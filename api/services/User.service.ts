@@ -1,6 +1,6 @@
 import { compare } from "bcrypt";
 import User from "../../database/models/User";
-import UserDto from "../dto/User-dto";
+import UserDto from "../dto/user-dto";
 import { hash } from "bcrypt";
 import { v4 } from "uuid";
 import TokenService from "./dependencies/Token.service";
