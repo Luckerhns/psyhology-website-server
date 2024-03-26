@@ -3,7 +3,6 @@ import User from "../../database/models/User";
 import UserDto from "../dto/User-dto";
 import { hash } from "bcrypt";
 import { v4 } from "uuid";
-import MailService from "./dependencies/Mail.service";
 import TokenService from "./dependencies/Token.service";
 import ErrorException from "../errors/ErrorException";
 
@@ -21,7 +20,7 @@ export default class UserService {
         // CREATE HASH PASSWORD
         const hashPassword = await hash(password, 3);
         const activationLink = await v4();
-
+ 
         // CREATING USER
         const user = await User.create({
             ...params,
@@ -36,10 +35,10 @@ export default class UserService {
         const tokens = await TokenService.generateTokens({ ...userDto });
 
         // EMAIL ACTIVATION
-        await MailService.sendActivationMail(
-            email,
-            `${process.env.API_URL}/api/activate/${activationLink}`
-        );
+        // await MailService.sendActivationMail(
+        //     email,
+        //     `${process.env.API_URL}/api/activate/${activationLink}`
+        // );
 
         const data = await TokenService.saveToken(
             userDto.id,
