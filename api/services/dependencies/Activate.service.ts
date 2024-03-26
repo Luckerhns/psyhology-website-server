@@ -1,5 +1,5 @@
 import User from "../../../database/models/User";
-import ErrorException from "../../error/ErrorException";
+import ErrorException from "../../errors/ErrorException";
 
 export default class ActivateService {
     public static async activate(link) {
