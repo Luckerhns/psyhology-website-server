@@ -19,8 +19,8 @@ export default class UserController {
 
     public static async login(req, res, next) {
         try {
-            const params = req.body;
-            const user = await UserService.login(params);
+            const {email, password} = req.body;
+            const user = await UserService.login(email, password);
             res.cookie("user", user.user, {
                 maxAge: dtoCookieExpires,
                 httpOnly: true,
