@@ -23,12 +23,11 @@ app.use("/api", router);
 
 const start = async () => {
   await database.authenticate();
-  await database.sync({alter: true, force: true});
+  // await database.sync({alter: true, force: true});
   await database.sync();
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
   });
-  console.log(process.env.DB_NAME);
 };
 
 start();

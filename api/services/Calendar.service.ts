@@ -12,9 +12,6 @@ export default class CalendarService {
         { record: JSON.stringify(calendar) },
         { where: { id: 1 } }
       );
-      console.log(updatedCalendar);
-      console.log(calendar);
-
       return updatedCalendar;
     } catch (error) {
       console.log(error);

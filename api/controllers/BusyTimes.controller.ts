@@ -30,7 +30,7 @@ export default class BusyTimesController {
 
   public static async createRecord(req, res, next) {
     try {
-      const { firstname, lastname, patronymic, phone, date, email, time } =
+      const [ date, time, firstname, lastname, patronymic, phone, email ] =
         req.body;
 
       const newRecord = await Record.findOne();

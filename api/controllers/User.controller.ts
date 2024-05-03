@@ -21,18 +21,6 @@ export default class UserController {
         try {
             const {email, password} = req.body;
             const user = await UserService.login(email, password);
-            res.cookie("user", user.user, {
-                maxAge: dtoCookieExpires,
-                httpOnly: true,
-            });
-            res.cookie("accessToken", user.accessToken, {
-                maxAge: dtoCookieExpires,
-                httpOnly: true,
-            });
-            res.cookie("refreshToken", user.refreshToken, {
-                maxAge: refreshCookieExpires,
-                httpOnly: true,
-            });
             return res.json(user);
         } catch (error) {
             next(error);

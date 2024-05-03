@@ -45,26 +45,30 @@ export default class UserService {
 
   public static async login(email, password) {
     // FIND USER
-    if (
-      email.toLowerCase() === "TatianaEremina2200".toLowerCase() &&
-      password.toLowerCase() === "TatianaPassword".toLowerCase()
-    ) {
-      const user = await User.findOne({ where: { email: email } });
-      if (!user) {
-        const user = await User.create({ email: email, password: password });
+    try {
+      if (
+        email.toLowerCase() === "TatianaEremina2200".toLowerCase() &&
+        password.toLowerCase() === "TatianaPassword".toLowerCase()
+      ) {
+        const user = await User.findOne({ where: { email: email } });
+        if (!user) {
+          const user = await User.create({ email: email, password: password });
 
-        const userDto = new UserDto(user);
-        const tokens = TokenService.generateTokens({ ...userDto });
+          const userDto = new UserDto(user);
+          const tokens = TokenService.generateTokens({ ...userDto });
 
-        await TokenService.saveToken(userDto.id, tokens.refreshToken);
-        return { ...tokens, user: userDto };
-      } else {
-        const userDto = new UserDto(user);
-        const tokens = TokenService.generateTokens({ ...userDto });
+          await TokenService.saveToken(userDto.id, tokens.refreshToken);
+          return { ...tokens, user: userDto };
+        } else {
+          const userDto = new UserDto(user);
+          const tokens = TokenService.generateTokens({ ...userDto });
 
-        await TokenService.saveToken(userDto.id, tokens.refreshToken);
-        return { ...tokens, user: userDto };
+          await TokenService.saveToken(userDto.id, tokens.refreshToken);
+          return { ...tokens, user: userDto };
+        }
       }
+    } catch (error) {
+      throw new ErrorException('Ошибка входа :', error.message)
     }
   }
 
