@@ -8,13 +8,14 @@ const dtoCookieExpires = 30 * 60 * 60 * 1000;
 
 export default class UserController {
     public static async registration(req, res, next) {
-        try {
-            const params = req.body;
-            const user = await UserService.registration(params);
-            return res.json(user);
-        } catch (error) {
-            next(error);
-        }
+        // try {
+        //     const params = req.body;
+        //     const user = await UserService.registration(params);
+        //     return res.json(user);
+        // } catch (error) {
+        //     next(error);
+        // }
+        console.log("REGISTRATION")
     }
 
     public static async login(req, res, next) {
