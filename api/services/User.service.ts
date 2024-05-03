@@ -60,15 +60,11 @@ export default class UserService {
           await TokenService.saveToken(userDto.id, tokens.refreshToken);
           return { ...tokens, user: userDto };
         } else {
-          const userDto = new UserDto(user);
-          const tokens = TokenService.generateTokens({ ...userDto });
-
-          await TokenService.saveToken(userDto.id, tokens.refreshToken);
-          return { ...tokens, user: userDto };
+          console.log('User is not authenticated!')
         }
       }
     } catch (error) {
-      throw new ErrorException('Ошибка входа :', error.message)
+      throw new ErrorException("Ошибка входа :", error.message);
     }
   }
 
